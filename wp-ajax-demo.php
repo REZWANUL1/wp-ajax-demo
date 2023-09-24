@@ -62,39 +62,3 @@ function ajaxdemo_admin_page()
    </div>
 <?php
 }
-
-add_action('wp_ajax_ajd_simple', function () {
-   $data = $_POST['data'];
-   echo "Hello " . strtoupper($data);
-   die();
-});
-
-function ajd_processor()
-{
-   $data = $_POST['data'];
-   echo "Hello " . strtoupper($data);
-   die();
-}
-add_action('wp_ajax_ajd_priv', 'ajd_processor');
-add_action('wp_ajax_nopriv_ajd_priv', 'ajd_processor');
-
-add_action('wp_ajax_ajd_process_user', function () {
-   $person = $_POST['person'];
-   echo "The Email Address Of {$person['name']} is {$person['email']}";
-   die();
-});
-
-function ajd_protected()
-{
-   $secret = $_POST['secret'];
-   $nonce = $_POST['ajd_nonce'];
-   $action = 'ajd_protected';
-   if (wp_verify_nonce($nonce, $action)) {
-      echo "Authorized " . strtoupper($secret);
-   } else {
-      echo "You are not authorized";
-   }
-   die();
-}
-add_action('wp_ajax_ajd_protected', 'ajd_protected');
-add_action('wp_ajax_nopriv_ajd_protected', 'ajd_protected');
