@@ -8,5 +8,13 @@
 })(jQuery);
 
 function simple_ajax_call() {
-	alert(plugindata.ajax_url);
+	let $ = jQuery;
+	let name = prompt("What is your Name?");
+	$.post(
+		plugindata.ajax_url,
+		{ action: "ajd_simple", data: name },
+		function (data) {
+			console.log(data);
+		}
+	);
 }

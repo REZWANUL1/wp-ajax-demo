@@ -62,3 +62,10 @@ function ajaxdemo_admin_page()
    </div>
 <?php
 }
+add_action('wp_ajax_ajd_simple', 'wp_ajax_ajd_simple_callback');
+function wp_ajax_ajd_simple_callback()
+{
+   $data = $_POST['data'];
+   echo "Hello " . strtoupper($data);
+   die();
+}
