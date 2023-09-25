@@ -46,3 +46,19 @@ function ajd_localize_script() {
 		}
 	);
 }
+
+//? nonce
+function ajd_secure_ajax_call() {
+	let $ = jQuery;
+	$.post(
+		plugindata.ajax_url,
+		{
+			action: "ajd_protected",
+			secret: "Secret code",
+			ajd_nonce: plugindata.ajd_nonce,
+		},
+		function (data) {
+			console.log(data);
+		}
+	);
+}

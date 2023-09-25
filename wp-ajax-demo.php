@@ -90,6 +90,24 @@ add_action('wp_ajax_adj_process_user', 'ajd_localize_script_ajd_simple_callback'
 function ajd_localize_script_ajd_simple_callback()
 {
    $data = $_POST['person'];
-   echo "Hello {$data['name']} your email is {$data['email']}" ;
+   echo "Hello {$data['name']} your email is {$data['email']}";
+   die();
+}
+
+
+//? ajd protected
+
+add_action('wp_ajax_ajd_protected', 'wp_ajax_ajd_protected_callback');
+add_action('wp_ajax_nopriv_ajd_protected', 'wp_ajax_ajd_protected_callback');
+function wp_ajax_ajd_protected_callback()
+{
+   $nonce = $_POST['ajd_nonce'];
+   $secret = $_POST['secret'];
+   $action = 'ajd_protected';
+   if (wp_verify_nonce($nonce, $action)) {
+      echo  "you are authorized $secret";
+   } else {
+      echo "you are not authorized";
+   }
    die();
 }
