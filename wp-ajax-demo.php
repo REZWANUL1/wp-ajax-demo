@@ -30,7 +30,7 @@ add_action('admin_enqueue_scripts', function ($hook) {
          array('ajax_url' => admin_url('admin-ajax.php'), 'ajd_nonce' => $ajd_nonce)
       );
 
-      wp_localize_script('ajax-demo-js', 'bucket', array('name' => 'Hasin Hayder', 'email' => 'me@hasin.me'));
+      wp_localize_script('ajax-demo-js', 'bucket', array('name' => 'Rezwanul Haque', 'email' => 'me@mukto.me'));
    }
 });
 
@@ -62,6 +62,7 @@ function ajaxdemo_admin_page()
    </div>
 <?php
 }
+//? simple ajax call
 add_action('wp_ajax_ajd_simple', 'wp_ajax_ajd_simple_callback');
 function wp_ajax_ajd_simple_callback()
 {
@@ -70,6 +71,8 @@ function wp_ajax_ajd_simple_callback()
    die();
 }
 
+//? privilege ajax call
+//? non privilege ajax call
 
 add_action('wp_ajax_nopriv_unp_call', 'wp_ajax_nopriv_ajd_simple_callback');
 add_action('wp_ajax_unp_call', 'wp_ajax_nopriv_ajd_simple_callback');
@@ -77,5 +80,16 @@ function wp_ajax_nopriv_ajd_simple_callback()
 {
    $data = $_POST['data'];
    echo "Hello " . strtoupper($data);
+   die();
+}
+
+
+//? non privilege ajax call
+
+add_action('wp_ajax_adj_process_user', 'ajd_localize_script_ajd_simple_callback');
+function ajd_localize_script_ajd_simple_callback()
+{
+   $data = $_POST['person'];
+   echo "Hello {$data['name']} your email is {$data['email']}" ;
    die();
 }
