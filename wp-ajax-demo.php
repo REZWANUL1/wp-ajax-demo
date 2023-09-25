@@ -69,3 +69,13 @@ function wp_ajax_ajd_simple_callback()
    echo "Hello " . strtoupper($data);
    die();
 }
+
+
+add_action('wp_ajax_nopriv_unp_call', 'wp_ajax_nopriv_ajd_simple_callback');
+add_action('wp_ajax_unp_call', 'wp_ajax_nopriv_ajd_simple_callback');
+function wp_ajax_nopriv_ajd_simple_callback()
+{
+   $data = $_POST['data'];
+   echo "Hello " . strtoupper($data);
+   die();
+}

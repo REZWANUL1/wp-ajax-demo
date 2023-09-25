@@ -18,3 +18,15 @@ function simple_ajax_call() {
 		}
 	);
 }
+
+function unp_ajax_call() {
+	let $ = jQuery;
+	let name = prompt("What is your Name?");
+	$.post(
+		plugindata.ajax_url,
+		{ action: "unp_call", data: name },
+		function (data) {
+			console.log(data);
+		}
+	);
+}
